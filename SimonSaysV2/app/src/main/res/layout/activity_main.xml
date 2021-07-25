@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:foreground="@drawable/bg_blue_try"
@@ -9,8 +7,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="209dp"
-        android:layout_marginTop="200dp"
+        android:layout_height="179dp"
+        android:layout_marginTop="250dp"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -18,6 +16,7 @@
             android:id="@+id/leftTop"
             android:layout_width="100dp"
             android:layout_height="253dp"
+            android:layout_marginLeft="13dp"
             android:layout_weight="1"
             android:background="#3366ff"
             android:orientation="horizontal">
@@ -28,6 +27,7 @@
             android:id="@+id/rightTop"
             android:layout_width="107dp"
             android:layout_height="252dp"
+            android:layout_marginLeft="9dp"
             android:layout_weight="1"
             android:background="#33ff66"
             android:orientation="horizontal">
@@ -37,8 +37,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="209dp"
-        android:layout_marginTop="400dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="440dp"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -46,6 +46,7 @@
             android:id="@+id/leftBottom"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="9dp"
             android:layout_weight="1"
             android:background="#ff6633"
             android:orientation="horizontal">
@@ -56,6 +57,7 @@
             android:id="@+id/rightBottom"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_weight="1"
             android:background="#fff333"
             android:orientation="horizontal">
@@ -72,10 +74,11 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/simonFrame"
         android:layout_width="400dp"
         android:layout_height="420dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="223dp"
         android:src="@drawable/board_frame" />
 
 </FrameLayout>

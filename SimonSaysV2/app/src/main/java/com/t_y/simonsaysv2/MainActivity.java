@@ -1,7 +1,5 @@
 package com.t_y.simonsaysv2;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,10 +12,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
     View leftBottom;
     View rightTop;
     View rightBottom;
-    TextView textView;
+    TextView scoreTextView;
     final int MAX_LENGTH = 1000;
     int array_of_moves[] = new int[MAX_LENGTH];
-    public int numberOfElmentsInMovesArray = 0, k = 0, numberOfClicksEachStage = 0, x, sadMusic, highScore = 0, hardness;
+    public int numberOfElmentsInMovesArray = 0, k = 0, numberOfClicksEachStage = 0, x, highScore = 0, hardness;
     public SoundPool sp = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
     Random r = new Random();
     final Handler handler = new Handler();
@@ -45,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         leftBottom = findViewById(R.id.leftBottom);
         rightTop = findViewById(R.id.rightTop);
         rightBottom = findViewById(R.id.rightBottom);
-        textView = (TextView) findViewById(R.id.scoreTextView);
+        scoreTextView = (TextView) findViewById(R.id.scoreTextView);
 
         sharedPreferences=this.getApplicationContext().getSharedPreferences("my_pref",0);
 
@@ -63,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 .setItems(a, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         hardness = which;
-                        textView.setText("current score: " + numberOfElmentsInMovesArray + "           High score: " + highScore);
+                        scoreTextView.setText("current score: " + numberOfElmentsInMovesArray + "           High score: " + highScore);
                         Toast.makeText(MainActivity.this, "Welcome to Simon V2 hardness: " + a[hardness] + ", Created by T_Y", Toast.LENGTH_LONG).show();
                         //on initial start, click the playGame function after delay
                         final Runnable r = new Runnable() {
@@ -107,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //on success
                 playSound(v.getId());
-                xorMyColor(v);
+                changeMyColor(v);//makes the impact of pressing by color
                 numberOfClicksEachStage++;
                 if (numberOfElmentsInMovesArray == numberOfClicksEachStage) {
 
@@ -119,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     if (numberOfElmentsInMovesArray > highScore) {
                         highScore = numberOfElmentsInMovesArray;
                     }
-                    textView.setText("Currect score: " + numberOfElmentsInMovesArray + "           High score: " + highScore);
+                    scoreTextView.setText("current score: " + numberOfElmentsInMovesArray + "           High score: " + highScore);
                     final Runnable r = new Runnable() {
                         public void run() {
                             playGame();
@@ -159,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         p.start();
     }
 
-    private void xorMyColor(final View v) {
+    private void changeMyColor(final View v) {
         //function that changes the background color and get it back after 500 milliseconds
         v.getBackground().setAlpha(51);
         final Runnable r = new Runnable() {
@@ -185,16 +181,16 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 if (array_of_moves[click_index] == 1) {
                     playSound(R.id.leftTop);
-                    xorMyColor(leftTop);
+                    changeMyColor(leftTop);
                 } else if (array_of_moves[click_index] == 2) {
                     playSound(R.id.rightTop);
-                    xorMyColor(rightTop);
+                    changeMyColor(rightTop);
                 } else if (array_of_moves[click_index] == 3) {
                     playSound(R.id.leftBottom);
-                    xorMyColor(leftBottom);
+                    changeMyColor(leftBottom);
                 } else {
                     playSound(R.id.rightBottom);
-                    xorMyColor(rightBottom);
+                    changeMyColor(rightBottom);
                 }
             }
         };
@@ -216,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void clear() {//reset the game to initial state
+    private void onDestory() {//reset the game to initial state
         for (int i = 0; i < MAX_LENGTH; i++) {
             array_of_moves[i] = 0;
         }
