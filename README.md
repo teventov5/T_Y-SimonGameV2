@@ -5,4 +5,4 @@ This project was written in java in android studio.
 
 link to the demo video on youtube:
 
-https://youtube.com/shorts/HwMfZWiXq1U
+https://www.youtube.com/watch?v=SMfaXe8bmw0
